@@ -1,0 +1,6 @@
+/build/classes/cn/weixin/core/*.class
+/build/classes/cn/weixin/msg/req/*.class
+/build/classes/cn/weixin/msg/resp/*.class
+/build/classes/cn/weixin/pojo/*.class
+/build/classes/cn/weixin/service/*.class
+/build/classes/cn/weixin/util/*.class
