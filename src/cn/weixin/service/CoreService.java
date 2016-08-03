@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 
 import cn.weixin.msg.resp.Article;
@@ -13,6 +15,8 @@ import cn.weixin.msg.resp.Music;
 import cn.weixin.msg.resp.MusicMessage;
 import cn.weixin.msg.resp.NewsMessage;
 import cn.weixin.msg.resp.TextMessage;
+import cn.weixin.pojo.JokeVo;
+import cn.weixin.pojo.JokeVo.Joke;
 import cn.weixin.pojo.WeatherVo;
 import cn.weixin.util.MessageUtil;
 
@@ -135,6 +139,18 @@ public class CoreService {
 					message.setArticles(list);
 					respMessage = MessageUtil.newsMessageToXml(message);
 					return respMessage;
+				}
+				if(respContent.startsWith("笑话")){
+					String url = "http://japi.juhe.cn/joke/content/list.from?key=3050135a635f27d901bce7d764c6396c&page=1&pagesize=20&sort=asc&time={time}";
+					InputStream inputStream =JokeService.httpRequest(url.replace("{time}","1308745232"));
+					JokeVo jokeVo = JokeService.getContent(inputStream);
+					Random random = new Random();
+					int i = random.nextInt(20);
+					Joke joke = jokeVo.getResult().getData().get(i);
+					String content = joke.getContent();
+					textMessage.setContent(content);
+				    respMessage = MessageUtil.textMessageToXml(textMessage);
+				    return respMessage;
 				}
 				
 			

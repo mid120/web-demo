@@ -4,7 +4,9 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -12,7 +14,7 @@ import org.dom4j.io.SAXReader;
 
 import cn.weixin.msg.resp.Music;
 
-public class MusicService {
+public class MusicService extends BaseService {
 	/** 
      * 根据名称和作者搜索音乐 
      *  
@@ -62,27 +64,7 @@ public class MusicService {
         return result;  
     }  
   
-    /** 
-     * 发送http请求取得返回的输入流 
-     *  
-     * @param requestUrl 请求地址 
-     * @return InputStream 
-     */  
-    private static InputStream httpRequest(String requestUrl) {  
-        InputStream inputStream = null;  
-        try {  
-            URL url = new URL(requestUrl);  
-            HttpURLConnection httpUrlConn = (HttpURLConnection) url.openConnection();  
-            httpUrlConn.setDoInput(true);  
-            httpUrlConn.setRequestMethod("GET");  
-            httpUrlConn.connect();  
-            // 获得返回的输入流  
-            inputStream = httpUrlConn.getInputStream();  
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }  
-        return inputStream;  
-    }  
+ 
   
     /** 
      * 解析音乐参数 
@@ -144,11 +126,13 @@ public class MusicService {
   
     // 测试方法  
     public static void main(String[] args) {  
-        Music music = searchMusic("相信自己", "零点乐队");  
-        System.out.println("音乐名称：" + music.getTitle());  
-        System.out.println("音乐描述：" + music.getDescription());  
-        System.out.println("普通品质链接：" + music.getMusicUrl());  
-        System.out.println("高品质链接：" + music.getHQMusicUrl());  
+//        Music music = searchMusic("相信自己", "零点乐队");  
+//        System.out.println("音乐名称：" + music.getTitle());  
+//        System.out.println("音乐描述：" + music.getDescription());  
+//        System.out.println("普通品质链接：" + music.getMusicUrl());  
+//        System.out.println("高品质链接：" + music.getHQMusicUrl());  
+
+		
     }  
 
 }

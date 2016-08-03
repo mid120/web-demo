@@ -1,11 +1,7 @@
 package cn.weixin.service;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,44 +9,15 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import cn.weixin.msg.resp.Music;
 import cn.weixin.pojo.WeatherVo;
 
-public class WeatherService {
+public class WeatherService extends BaseService {
 	
-    /** 
-     * 发送http请求取得返回的输入流 
-     *  
-     * @param requestUrl 请求地址 
-     * @return InputStream 
-     */  
-     static InputStream httpRequest(String requestUrl) {  
-        InputStream inputStream = null;  
-        try {  
-            URL url = new URL(requestUrl);  
-            HttpURLConnection httpUrlConn = (HttpURLConnection) url.openConnection();  
-            httpUrlConn.setDoInput(true);  
-            httpUrlConn.setRequestMethod("GET");  
-            httpUrlConn.connect();  
-            // 获得返回的输入流  
-            inputStream = httpUrlConn.getInputStream();  
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }  
-        return inputStream;  
-    } 
-    
-    
     /**
      * 解析请求API返回的xml 数据
      * 
      */
-    /** 
-     * 解析音乐参数 
-     *  
-     * @param inputStream 百度音乐搜索API返回的输入流 
-     * @return Music 
-     */  
+
     @SuppressWarnings("unchecked")  
      static ArrayList<WeatherVo> parseWeather(InputStream inputStream) {  
         ArrayList<WeatherVo> list = new ArrayList();
@@ -102,9 +69,9 @@ public class WeatherService {
         return list;  
     } 
     
-    public static void main(String[] args) {
-		String url="http://api.map.baidu.com/telematics/v3/weather?location=北京&ak=yFobrGyMiW0CBn6Sa4GcN4s4CBlKOucB";
-		InputStream inputStream = httpRequest(url);
+//    public static void main(String[] args) {
+//		String url="http://api.map.baidu.com/telematics/v3/weather?location=北京&ak=yFobrGyMiW0CBn6Sa4GcN4s4CBlKOucB";
+//		InputStream inputStream = httpRequest(url);
 //        byte[] tempbytes = new byte[1000];
 //        int byteread = 0;
 //        try {
@@ -116,8 +83,7 @@ public class WeatherService {
 //			e.printStackTrace();
 //		}
 		
-		
-             parseWeather(inputStream);
-	}
+//             parseWeather(inputStream);
+//	}
     
 }
